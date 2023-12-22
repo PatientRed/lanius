@@ -7,13 +7,15 @@ namespace lanius
 
     }
 
-    internal class Metric
+    internal abstract class Metric<T> : IMetric
     {
-        internal int Value { get; private set; }
-        int _first;
-        int _last;
+        public virtual uint Value { get; }
+        public virtual uint TotalValue { get; }
+        protected T First { get; }
+        protected T _previous;
+        protected T _last;
 
-        private int Measure()
+        public virtual uint Measure()
         {
             throw new NotImplementedException();
         }
@@ -23,15 +25,14 @@ namespace lanius
             var _process = Process.GetCurrentProcess();
             var processTime = _process.TotalProcessorTime;
             var memory = _process.WorkingSet64;
+
         }
 
-        public void End()
+        public virtual uint ContinuosMeasure()
         {
-
+            throw new NotImplementedException();
         }
 
-        public Metric()
-        {
-        }
+        public Metric(T value) => First = _previous = _last = value;
     }
 }
