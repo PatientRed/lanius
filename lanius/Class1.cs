@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 
+//ulong instead of uint? how much time process have to be executed to generate overflow of uint?
 namespace lanius
 {
     public class TelemetryProvider
@@ -38,9 +39,14 @@ namespace lanius
         public void Start()
         {
             var _process = Process.GetCurrentProcess();
-            var processTime = _process.TotalProcessorTime;
             var memory = _process.WorkingSet64;
 
+            var threads = _process.Threads;
+            TimeSpan threadsTotalTime = new(0);
+            foreach (ProcessThread thread in threads)
+            {
+                threadsTotalTime += thread.TotalProcessorTime;
+            }
         }
 
         public virtual uint ContinuosMeasure()
