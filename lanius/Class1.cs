@@ -4,7 +4,20 @@ namespace lanius
 {
     public class TelemetryProvider
     {
+        private protected IMetric[] _metrics;
 
+        public void GetMeasures()
+        {
+            foreach (var metric in _metrics)
+            {
+                metric.Measure();
+            }
+        }
+
+        internal TelemetryProvider(IMetric[] metrics)
+        {
+            _metrics = metrics;
+        }
     }
 
     internal abstract class Metric<T> : IMetric
