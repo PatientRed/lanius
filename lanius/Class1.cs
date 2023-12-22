@@ -50,4 +50,17 @@ namespace lanius
 
         public Metric(T value) => First = _previous = _last = value;
     }
+
+    internal class TotalCPUTime : Metric<TimeSpan>
+    {
+        public override uint Value => (uint)(_last.TotalMilliseconds - _previous.TotalMilliseconds);
+        public override uint TotalValue => (uint)(_last.TotalMilliseconds - First.TotalMilliseconds);
+
+        internal TotalCPUTime() : base(CurrentProcess.TotalProcessorTime) { }
+    }
+
+    internal class WorkingSetDelta : Metric<long>
+    {
+        internal WorkingSetDelta() : base(CurrentProcess.WorkingSet64) { }
+    }
 }
