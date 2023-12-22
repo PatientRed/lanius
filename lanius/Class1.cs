@@ -24,6 +24,8 @@ namespace lanius
     {
         public virtual uint Value { get; }
         public virtual uint TotalValue { get; }
+        //is it ok? static process field always inside Process.GetCurrentProcess()?
+        protected static Process CurrentProcess { get; } = Process.GetCurrentProcess();
         protected T First { get; }
         protected T _previous;
         protected T _last;
