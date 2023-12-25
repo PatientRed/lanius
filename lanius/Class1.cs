@@ -47,6 +47,13 @@ namespace lanius
 
         public override long Measure()
         {
+            //alternative?:
+            //var threads = CurrentProcess.Threads;
+            //TimeSpan threadsTotalTime = new(0);
+            //foreach (ProcessThread thread in threads)
+            //{
+            //    threadsTotalTime += thread.TotalProcessorTime;
+            //}
             throw new NotImplementedException();
         }
 
