@@ -23,15 +23,15 @@ namespace lanius
 
     internal abstract class Metric<T> : IMetric
     {
-        public virtual uint Value { get; }
-        public virtual uint TotalValue { get; }
+        public virtual long Value { get; }
+        public virtual long TotalValue { get; }
         //is it ok? static process field always inside Process.GetCurrentProcess()?
         protected static Process CurrentProcess { get; } = Process.GetCurrentProcess();
         protected T First { get; }
         protected T _previous;
         protected T _last;
 
-        public virtual uint Measure()
+        public virtual long Measure()
         {
             throw new NotImplementedException();
         }
@@ -49,7 +49,7 @@ namespace lanius
             }
         }
 
-        public virtual uint ContinuosMeasure()
+        public virtual long ContinuosMeasure()
         {
             throw new NotImplementedException();
         }
@@ -59,8 +59,8 @@ namespace lanius
 
     internal class TotalCPUTime : Metric<TimeSpan>
     {
-        public override uint Value => (uint)(_last.TotalMilliseconds - _previous.TotalMilliseconds);
-        public override uint TotalValue => (uint)(_last.TotalMilliseconds - First.TotalMilliseconds);
+        public override long Value => (long)(_last.TotalMilliseconds - _previous.TotalMilliseconds);
+        public override long TotalValue => (long)(_last.TotalMilliseconds - First.TotalMilliseconds);
 
         internal TotalCPUTime() : base(CurrentProcess.TotalProcessorTime) { }
     }

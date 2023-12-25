@@ -2,11 +2,11 @@
 {
     internal interface IMetric
     {
-        uint Value { get; }
-        uint TotalValue { get; }
+        long Value { get; }
+        long TotalValue { get; }
 
         void Start();
-        uint Measure();
-        uint ContinuosMeasure();
+        long Measure();
+        long ContinuosMeasure();
     }
 }
