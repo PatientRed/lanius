@@ -31,8 +31,6 @@ namespace lanius
         protected T _previous;
         protected T _last;
 
-        public abstract void Start();
-
         public abstract long Measure();
 
         public abstract long ContinuosMeasure();
@@ -57,11 +55,6 @@ namespace lanius
             throw new NotImplementedException();
         }
 
-        public override void Start()
-        {
-            throw new NotImplementedException();
-        }
-
         public override long ContinuosMeasure()
         {
             throw new NotImplementedException();
@@ -74,11 +67,6 @@ namespace lanius
     {
         public override long Value => _last - _previous;
         public override long TotalValue => _last - First;
-
-        public override void Start()
-        {
-            throw new NotImplementedException();
-        }
 
         public override long Measure()
         {
