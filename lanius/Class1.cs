@@ -15,6 +15,14 @@ namespace lanius
             }
         }
 
+        public void ContinuousMeasure()
+        {
+            foreach (var metric in _metrics)
+            {
+                metric.ContinuosMeasure();
+            }
+        }
+
         internal TelemetryProvider(IMetric[] metrics)
         {
             _metrics = metrics;
