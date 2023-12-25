@@ -33,7 +33,11 @@ namespace lanius
 
         protected abstract Func<T> MeasurementMethod();
 
-        public abstract void Measure();
+        public virtual void Measure()
+        {
+            _previous = _last;
+            _last = MeasurementMethod().Invoke();
+        }
 
         public abstract void ContinuosMeasure();
 
