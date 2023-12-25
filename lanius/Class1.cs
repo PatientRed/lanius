@@ -7,7 +7,7 @@ namespace lanius
     {
         private protected IMetric[] _metrics;
 
-        public void GetMeasures()
+        public void Measure()
         {
             foreach (var metric in _metrics)
             {
