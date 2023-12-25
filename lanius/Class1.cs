@@ -39,7 +39,10 @@ namespace lanius
             _last = MeasurementMethod().Invoke();
         }
 
-        public abstract void ContinuosMeasure();
+        public virtual void ContinuosMeasure()
+        {
+            _last = MeasurementMethod().Invoke();
+        }
 
         public Metric(T value) => First = _previous = _last = value;
     }
