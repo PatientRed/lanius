@@ -61,16 +61,6 @@ namespace lanius
         //}
         protected override Func<TimeSpan> MeasurementMethod() => () => CurrentProcess.TotalProcessorTime;
 
-        public override void Measure()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void ContinuosMeasure()
-        {
-            throw new NotImplementedException();
-        }
-
         internal TotalCPUTime() : base() { }
     }
 
@@ -80,16 +70,6 @@ namespace lanius
         public override long TotalValue => _last - First;
 
         protected override Func<long> MeasurementMethod() => () => CurrentProcess.WorkingSet64;
-
-        public override void Measure()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void ContinuosMeasure()
-        {
-            throw new NotImplementedException();
-        }
 
         internal WorkingSetDelta() : base() { }
     }
