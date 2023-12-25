@@ -31,6 +31,8 @@ namespace lanius
         protected T _previous;
         protected T _last;
 
+        protected abstract Func<T> MeasurementMethod();
+
         public abstract void Measure();
 
         public abstract void ContinuosMeasure();
@@ -42,6 +44,8 @@ namespace lanius
     {
         public override long Value => (long)(_last.TotalMilliseconds - _previous.TotalMilliseconds);
         public override long TotalValue => (long)(_last.TotalMilliseconds - First.TotalMilliseconds);
+
+        protected override Func<TimeSpan> MeasurementMethod() => () => CurrentProcess.TotalProcessorTime;
 
         public override void Measure()
         {
@@ -67,6 +71,8 @@ namespace lanius
     {
         public override long Value => _last - _previous;
         public override long TotalValue => _last - First;
+
+        protected override Func<long> MeasurementMethod() => () => CurrentProcess.WorkingSet64;
 
         public override void Measure()
         {
