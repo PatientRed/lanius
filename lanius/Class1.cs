@@ -31,15 +31,7 @@ namespace lanius
         protected T _previous;
         protected T _last;
 
-        public void Start()
-        {
-            var threads = CurrentProcess.Threads;
-            TimeSpan threadsTotalTime = new(0);
-            foreach (ProcessThread thread in threads)
-            {
-                threadsTotalTime += thread.TotalProcessorTime;
-            }
-        }
+        public abstract void Start();
 
         public abstract long Measure();
 
@@ -58,6 +50,11 @@ namespace lanius
             throw new NotImplementedException();
         }
 
+        public override void Start()
+        {
+            throw new NotImplementedException();
+        }
+
         public override long ContinuosMeasure()
         {
             throw new NotImplementedException();
@@ -70,6 +67,11 @@ namespace lanius
     {
         public override long Value => _last - _previous;
         public override long TotalValue => _last - First;
+
+        public override void Start()
+        {
+            throw new NotImplementedException();
+        }
 
         public override long Measure()
         {
