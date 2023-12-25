@@ -23,25 +23,17 @@ namespace lanius
 
     internal abstract class Metric<T> : IMetric
     {
-        public virtual long Value { get; }
-        public virtual long TotalValue { get; }
+        public abstract long Value { get; }
+        public abstract long TotalValue { get; }
         //is it ok? static process field always inside Process.GetCurrentProcess()?
         protected static Process CurrentProcess { get; } = Process.GetCurrentProcess();
         protected T First { get; }
         protected T _previous;
         protected T _last;
 
-        public virtual long Measure()
-        {
-            throw new NotImplementedException();
-        }
-
         public void Start()
         {
-            var _process = Process.GetCurrentProcess();
-            var memory = _process.WorkingSet64;
-
-            var threads = _process.Threads;
+            var threads = CurrentProcess.Threads;
             TimeSpan threadsTotalTime = new(0);
             foreach (ProcessThread thread in threads)
             {
@@ -49,10 +41,9 @@ namespace lanius
             }
         }
 
-        public virtual long ContinuosMeasure()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract long Measure();
+
+        public abstract long ContinuosMeasure();
 
         public Metric(T value) => First = _previous = _last = value;
     }
@@ -62,11 +53,34 @@ namespace lanius
         public override long Value => (long)(_last.TotalMilliseconds - _previous.TotalMilliseconds);
         public override long TotalValue => (long)(_last.TotalMilliseconds - First.TotalMilliseconds);
 
+        public override long Measure()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override long ContinuosMeasure()
+        {
+            throw new NotImplementedException();
+        }
+
         internal TotalCPUTime() : base(CurrentProcess.TotalProcessorTime) { }
     }
 
     internal class WorkingSetDelta : Metric<long>
     {
+        public override long Value => _last - _previous;
+        public override long TotalValue => _last - First;
+
+        public override long Measure()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override long ContinuosMeasure()
+        {
+            throw new NotImplementedException();
+        }
+
         internal WorkingSetDelta() : base(CurrentProcess.WorkingSet64) { }
     }
 }
