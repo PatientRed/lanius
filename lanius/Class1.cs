@@ -44,7 +44,7 @@ namespace lanius
             _last = MeasurementMethod().Invoke();
         }
 
-        public Metric(T value) => First = _previous = _last = value;
+        public Metric() => First = _previous = _last = MeasurementMethod().Invoke();
     }
 
     internal class TotalCPUTime : Metric<TimeSpan>
@@ -71,7 +71,7 @@ namespace lanius
             throw new NotImplementedException();
         }
 
-        internal TotalCPUTime() : base(CurrentProcess.TotalProcessorTime) { }
+        internal TotalCPUTime() : base() { }
     }
 
     internal class WorkingSetDelta : Metric<long>
@@ -91,6 +91,6 @@ namespace lanius
             throw new NotImplementedException();
         }
 
-        internal WorkingSetDelta() : base(CurrentProcess.WorkingSet64) { }
+        internal WorkingSetDelta() : base() { }
     }
 }
