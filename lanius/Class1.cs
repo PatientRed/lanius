@@ -31,9 +31,9 @@ namespace lanius
         protected T _previous;
         protected T _last;
 
-        public abstract long Measure();
+        public abstract void Measure();
 
-        public abstract long ContinuosMeasure();
+        public abstract void ContinuosMeasure();
 
         public Metric(T value) => First = _previous = _last = value;
     }
@@ -43,7 +43,7 @@ namespace lanius
         public override long Value => (long)(_last.TotalMilliseconds - _previous.TotalMilliseconds);
         public override long TotalValue => (long)(_last.TotalMilliseconds - First.TotalMilliseconds);
 
-        public override long Measure()
+        public override void Measure()
         {
             //alternative?:
             //var threads = CurrentProcess.Threads;
@@ -55,7 +55,7 @@ namespace lanius
             throw new NotImplementedException();
         }
 
-        public override long ContinuosMeasure()
+        public override void ContinuosMeasure()
         {
             throw new NotImplementedException();
         }
@@ -68,12 +68,12 @@ namespace lanius
         public override long Value => _last - _previous;
         public override long TotalValue => _last - First;
 
-        public override long Measure()
+        public override void Measure()
         {
             throw new NotImplementedException();
         }
 
-        public override long ContinuosMeasure()
+        public override void ContinuosMeasure()
         {
             throw new NotImplementedException();
         }
