@@ -60,8 +60,6 @@ namespace lanius
         //    threadsTotalTime += thread.TotalProcessorTime;
         //}
         protected override Func<TimeSpan> MeasurementMethod() => () => CurrentProcess.TotalProcessorTime;
-
-        internal TotalCPUTime() : base() { }
     }
 
     internal class WorkingSetDelta : Metric<long>
@@ -70,7 +68,5 @@ namespace lanius
         public override long TotalValue => _last - First;
 
         protected override Func<long> MeasurementMethod() => () => CurrentProcess.WorkingSet64;
-
-        internal WorkingSetDelta() : base() { }
     }
 }
