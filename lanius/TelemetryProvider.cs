@@ -1,9 +1,12 @@
 //ulong instead of uint? how much time process have to be executed to generate overflow of uint?
+
 namespace lanius
 {
-    public class TelemetryProvider
+    public abstract class TelemetryProvider : ITelemetryProvider
     {
         private protected IMetric[] _metrics;
+
+        public Dictionary<string, long> Measurements => _metrics.ToDictionary(metric => metric.GetType().ToString(), metric => metric.Value);
 
         public void Measure()
         {
