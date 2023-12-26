@@ -1,12 +1,15 @@
 ﻿namespace lanius
 {
-    internal class TotalCPUTime : Metric<TimeSpan>
+    internal abstract class CPUTime : Metric<TimeSpan>
     {
         public TimeSpan RawValue => _last - _previous;
         public TimeSpan RawTotalValue => _last - First;
         public override long Value => (long)(_last.TotalMilliseconds - _previous.TotalMilliseconds);
         public override long TotalValue => (long)(_last.TotalMilliseconds - First.TotalMilliseconds);
+    }
 
+    internal class TotalCPUTime : CPUTime
+    {
         //alternative?:
         //var threads = CurrentProcess.Threads;
         //TimeSpan threadsTotalTime = new(0);
