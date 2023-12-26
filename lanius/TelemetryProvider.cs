@@ -4,7 +4,7 @@ namespace lanius
     {
         private protected IMetric[] _metrics;
 
-        public Dictionary<string, long> Measurements => _metrics.ToDictionary(metric => metric.GetType().ToString(), metric => metric.Value);
+        public Dictionary<string, long> Measurements => _metrics.ToDictionary(metric => metric.GetType().Name, metric => metric.Value);
 
         public void Measure()
         {
