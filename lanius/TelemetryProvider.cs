@@ -29,4 +29,12 @@ namespace lanius
 
         public TelemetryProvider() => _metrics = [];
     }
+
+    public class DummyTelemetryProvider : TelemetryProvider
+    {
+        public DummyTelemetryProvider()
+        {
+            _metrics = [new TotalCPUTime(), new WorkingSetDelta(), new PagedMemoryDelta(), new PrivateMemoryDelta()];
+        }
+    }
 }
