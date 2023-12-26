@@ -1,5 +1,3 @@
-//ulong instead of uint? how much time process have to be executed to generate overflow of uint?
-
 namespace lanius
 {
     public abstract class TelemetryProvider : ITelemetryProvider
