@@ -6,8 +6,7 @@ namespace lanius
     {
         public abstract long Value { get; }
         public abstract long TotalValue { get; }
-        //is it ok? static process field always inside Process.GetCurrentProcess()?
-        protected static Process CurrentProcess { get; } = Process.GetCurrentProcess();
+        protected Process CurrentProcess { get; }
         protected T First { get; }
         protected T _previous;
         protected T _last;
@@ -25,7 +24,11 @@ namespace lanius
             _last = MeasurementMethod().Invoke();
         }
 
-        public Metric() => First = _previous = _last = MeasurementMethod().Invoke();
+        public Metric()
+        {
+            CurrentProcess = Process.GetCurrentProcess();
+            First = _previous = _last = MeasurementMethod().Invoke();
+        }
     }
 
     internal class TotalCPUTime : Metric<TimeSpan>
