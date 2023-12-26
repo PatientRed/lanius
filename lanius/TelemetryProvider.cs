@@ -28,5 +28,7 @@ namespace lanius
         {
             _metrics = metrics;
         }
+
+        public TelemetryProvider() => _metrics = [];
     }
 }
