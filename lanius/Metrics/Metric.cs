@@ -7,6 +7,7 @@ namespace lanius
         public abstract long Value { get; }
         public abstract long TotalValue { get; }
         protected Process CurrentProcess { get; }
+        protected virtual bool RefreshRequired => true;
         protected T First { get; }
         protected T _previous;
         protected T _last;
@@ -16,11 +17,18 @@ namespace lanius
         public virtual void Measure()
         {
             _previous = _last;
+
+            if (RefreshRequired)
+                CurrentProcess.Refresh();
+
             _last = MeasurementMethod();
         }
 
         public virtual void ContinuosMeasure()
         {
+            if (RefreshRequired)
+                CurrentProcess.Refresh();
+
             _last = MeasurementMethod();
         }
 
