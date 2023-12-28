@@ -4,8 +4,8 @@
     {
         public TimeSpan RawValue => _last - _previous;
         public TimeSpan RawTotalValue => _last - First;
-        public override long Value => (long)(_last.TotalMilliseconds - _previous.TotalMilliseconds);
-        public override long TotalValue => (long)(_last.TotalMilliseconds - First.TotalMilliseconds);
+        public override long Value => (long)(_last - _previous).TotalMicroseconds; //Raw.total to long?
+        public override long TotalValue => (long)(_last - First).TotalMilliseconds; //Raw.total to long?
     }
 
     internal class TotalCPUTime : CPUTime
