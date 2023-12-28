@@ -17,6 +17,6 @@
         //{
         //    threadsTotalTime += thread.TotalProcessorTime;
         //}
-        protected override Func<TimeSpan> MeasurementMethod() => () => CurrentProcess.TotalProcessorTime;
+        protected override TimeSpan MeasurementMethod() => CurrentProcess.TotalProcessorTime;
     }
 }

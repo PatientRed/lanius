@@ -11,23 +11,23 @@ namespace lanius
         protected T _previous;
         protected T _last;
 
-        protected abstract Func<T> MeasurementMethod();
+        protected abstract T MeasurementMethod();
 
         public virtual void Measure()
         {
             _previous = _last;
-            _last = MeasurementMethod().Invoke();
+            _last = MeasurementMethod();
         }
 
         public virtual void ContinuosMeasure()
         {
-            _last = MeasurementMethod().Invoke();
+            _last = MeasurementMethod();
         }
 
         public Metric()
         {
             CurrentProcess = Process.GetCurrentProcess();
-            First = _previous = _last = MeasurementMethod().Invoke();
+            First = _previous = _last = MeasurementMethod();
         }
     }
 }

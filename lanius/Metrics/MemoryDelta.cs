@@ -8,16 +8,16 @@
 
     internal class WorkingSetDelta : MemoryDelta
     {
-        protected override Func<long> MeasurementMethod() => () => CurrentProcess.WorkingSet64;
+        protected override long MeasurementMethod() => CurrentProcess.WorkingSet64;
     }
 
     internal class PagedMemoryDelta : MemoryDelta
     {
-        protected override Func<long> MeasurementMethod() => () => CurrentProcess.PagedMemorySize64;
+        protected override long MeasurementMethod() => CurrentProcess.PagedMemorySize64;
     }
 
     internal class PrivateMemoryDelta : MemoryDelta
     {
-        protected override Func<long> MeasurementMethod() => () => CurrentProcess.PrivateMemorySize64;
+        protected override long MeasurementMethod() => CurrentProcess.PrivateMemorySize64;
     }
 }
