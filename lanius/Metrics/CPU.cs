@@ -2,6 +2,7 @@
 {
     internal abstract class CPUTime : Metric<TimeSpan>
     {
+        protected override bool RefreshRequired => false;
         public TimeSpan RawValue => _last - _previous;
         public TimeSpan RawTotalValue => _last - First;
         public override long Value => (long)(_last - _previous).TotalMicroseconds; //Raw.total to long?
