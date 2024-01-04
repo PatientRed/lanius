@@ -1,6 +1,25 @@
-﻿namespace lanius
+﻿using System.Text;
+
+namespace lanius
 {
-    public class DataStorageProvider
+    public class TextFileProvider(string path) : IDataStorageProvider
     {
+        protected readonly string _file = path;
+
+        public void Flush(in IEnumerable<Measurement> measurements)
+        {
+            StringBuilder result = new();
+
+            foreach (Measurement measurement in measurements)
+                result.AppendLine(measurement.ToString());
+
+            var file = new StreamWriter(new FileStream(_file, FileMode.Append, access: FileAccess.Write, share: FileShare.None));
+
+            using (file)
+            {
+                file.Write(result);
+                file.WriteLine();
+            }
+        }
     }
 }
