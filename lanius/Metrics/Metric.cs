@@ -8,6 +8,10 @@ namespace lanius
 
         public abstract long Value { get; }
         public abstract long TotalValue { get; }
+
+        public DateTime StartTime { get; init; }
+        public DateTime EndTime { get; private set; }
+
         protected Process CurrentProcess { get; }
         protected virtual bool RefreshRequired => true;
         protected T First { get; }
@@ -24,6 +28,8 @@ namespace lanius
                 CurrentProcess.Refresh();
 
             _last = MeasurementMethod();
+
+            EndTime = DateTime.Now;
         }
 
         public virtual void ContinuosMeasure()
@@ -32,10 +38,13 @@ namespace lanius
                 CurrentProcess.Refresh();
 
             _last = MeasurementMethod();
+
+            EndTime = DateTime.Now;
         }
 
         public Metric()
         {
+            StartTime = DateTime.Now;
             CurrentProcess = Process.GetCurrentProcess();
             First = _previous = _last = MeasurementMethod();
         }

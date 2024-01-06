@@ -7,6 +7,9 @@
         long Value { get; }
         long TotalValue { get; }
 
+        DateTime StartTime { get; }
+        DateTime EndTime { get; }
+
         void Measure();
         void ContinuosMeasure();
     }
