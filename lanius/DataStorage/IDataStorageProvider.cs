@@ -1,4 +1,6 @@
-﻿namespace lanius
+﻿using lanius.Measurements;
+
+namespace lanius
 {
     internal interface IDataStorageProvider
     {
