@@ -4,6 +4,8 @@ namespace lanius
 {
     internal abstract class Metric<T> : IMetric
     {
+        public abstract string Name { get; }
+
         public abstract long Value { get; }
         public abstract long TotalValue { get; }
         protected Process CurrentProcess { get; }

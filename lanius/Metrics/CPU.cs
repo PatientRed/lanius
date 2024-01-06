@@ -11,6 +11,7 @@
 
     internal class TotalCPUTime : CPUTime
     {
+        public override string Name => "TotalCPUTime";
         //alternative?:
         //var threads = CurrentProcess.Threads;
         //TimeSpan threadsTotalTime = new(0);
