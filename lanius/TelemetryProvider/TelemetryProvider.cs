@@ -1,10 +1,12 @@
+using lanius.Measurements;
+
 namespace lanius
 {
     public abstract class TelemetryProvider : ITelemetryProvider
     {
         private protected IMetric[] _metrics;
 
-        public Dictionary<string, long> Measurements => _metrics.ToDictionary(metric => metric.GetType().Name, metric => metric.Value);
+        public IEnumerable<Measurement> Measurements => _metrics.Select(metric => metric.GetData());
 
         public void Measure()
         {
