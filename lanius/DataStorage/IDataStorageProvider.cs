@@ -2,7 +2,7 @@
 
 namespace lanius
 {
-    internal interface IDataStorageProvider
+    public interface IDataStorageProvider
     {
         public void Flush(in IEnumerable<Measurement> measurements);
     }

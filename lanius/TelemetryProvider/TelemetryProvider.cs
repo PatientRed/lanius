@@ -25,6 +25,8 @@ namespace lanius
             }
         }
 
+        public void Redirect(IDataStorageProvider storageProvider) => _storageProvider = storageProvider;
+
         public void ForceFlush()
         {
             if (_storageProvider is null)
