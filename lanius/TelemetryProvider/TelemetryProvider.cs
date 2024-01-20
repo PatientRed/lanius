@@ -5,6 +5,7 @@ namespace lanius
     public abstract class TelemetryProvider : ITelemetryProvider
     {
         private protected IMetric[] _metrics;
+        private protected IDataStorageProvider? _storageProvider;
 
         public IEnumerable<Measurement> Measurements => _metrics.Select(metric => metric.GetData());
 
