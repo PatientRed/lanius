@@ -25,6 +25,14 @@ namespace lanius
             }
         }
 
+        public void ForceFlush()
+        {
+            if (_storageProvider is null)
+                throw new InvalidOperationException("You have no storage to flush");
+
+            _storageProvider?.Flush(Measurements);
+        }
+
         internal TelemetryProvider(IMetric[] metrics)
         {
             _metrics = metrics;
