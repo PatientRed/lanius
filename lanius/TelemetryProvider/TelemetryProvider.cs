@@ -35,9 +35,10 @@ namespace lanius
             _storageProvider?.Flush(Measurements);
         }
 
-        internal TelemetryProvider(IMetric[] metrics)
+        internal TelemetryProvider(IMetric[] metrics, IDataStorageProvider? storageProvider = null)
         {
             _metrics = metrics;
+            _storageProvider = storageProvider;
         }
 
         public TelemetryProvider(IDataStorageProvider storageProvider)
