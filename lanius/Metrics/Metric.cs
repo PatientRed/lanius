@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace lanius
+﻿namespace lanius
 {
     internal abstract class Metric<T> : IMetric
     {
@@ -10,12 +8,7 @@ namespace lanius
         public abstract long TotalValue { get; }
 
         public DateTime StartTime { get; init; }
-        public DateTime EndTime { get; private set; }
-
-        //Do I need to extract this (and measurement methods) as part of something like ProcessMetric<T>:Metric<T> ?
-        //f.e. I want implement system-wide metric not specific to current process and measure them in parallel, in this case current abstraction is not abstract enough.
-        protected Process CurrentProcess { get; }
-        protected virtual bool RefreshRequired => true;
+        public DateTime EndTime { get; protected set; }
 
         protected T First { get; }
         protected T _previous;
@@ -27,9 +20,6 @@ namespace lanius
         {
             _previous = _last;
 
-            if (RefreshRequired)
-                CurrentProcess.Refresh();
-
             _last = MeasurementMethod();
 
             EndTime = DateTime.Now;
@@ -37,9 +27,6 @@ namespace lanius
 
         public virtual void ContinuosMeasure()
         {
-            if (RefreshRequired)
-                CurrentProcess.Refresh();
-
             _last = MeasurementMethod();
 
             EndTime = DateTime.Now;
@@ -48,7 +35,6 @@ namespace lanius
         public Metric()
         {
             StartTime = DateTime.Now;
-            CurrentProcess = Process.GetCurrentProcess();
             First = _previous = _last = MeasurementMethod();
         }
     }

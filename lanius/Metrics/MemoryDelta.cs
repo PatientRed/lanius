@@ -1,6 +1,6 @@
 ﻿namespace lanius
 {
-    internal abstract class MemoryDelta : Metric<long>
+    internal abstract class MemoryDelta : ProcessMetric<long>
     {
         public override long Value => _last - _previous;
         public override long TotalValue => _last - First;
