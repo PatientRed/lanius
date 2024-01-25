@@ -40,6 +40,12 @@ namespace lanius
             _metrics = metrics;
         }
 
+        public TelemetryProvider(IDataStorageProvider storageProvider)
+        {
+            _metrics = [];
+            _storageProvider = storageProvider;
+        }
+
         public TelemetryProvider() => _metrics = [];
     }
 
