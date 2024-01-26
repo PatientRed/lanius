@@ -5,6 +5,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <FileVersion>0.0.3.4</FileVersion>
+    <AssemblyVersion>0.0.3.4</AssemblyVersion>
+    <Copyright>PatientRed</Copyright>
+    <PackageProjectUrl>https://github.com/PatientRed/lanius</PackageProjectUrl>
+    <Description>Performance telemetry</Description>
+    <Authors>PatientRed</Authors>
+    <Version>0.0.3-alpha</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
