@@ -2,7 +2,7 @@ using lanius.Measurements;
 
 namespace lanius
 {
-    public abstract class TelemetryProvider : ITelemetryProvider
+    public class TelemetryProvider : ITelemetryProvider
     {
         private protected IMetric[] _metrics;
         private protected IDataStorageProvider? _storageProvider;
