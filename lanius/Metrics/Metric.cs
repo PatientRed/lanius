@@ -10,7 +10,7 @@
         public DateTime StartTime { get; init; }
         public DateTime EndTime { get; protected set; }
 
-        protected T First { get; }
+        protected T First { get; init; }
         protected T _previous;
         protected T _last;
 
