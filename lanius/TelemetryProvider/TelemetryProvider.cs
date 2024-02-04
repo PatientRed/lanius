@@ -32,7 +32,7 @@ namespace lanius
             if (_storageProvider is null)
                 throw new InvalidOperationException("You have no storage to flush");
 
-            _storageProvider?.Flush(Measurements);
+            _storageProvider.Flush(Measurements);
         }
 
         internal TelemetryProvider(IMetric[] metrics, IDataStorageProvider? storageProvider = null)
