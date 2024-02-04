@@ -31,6 +31,7 @@ namespace lanius
         public ProcessMetric()
         {
             CurrentProcess = Process.GetCurrentProcess();
+            First = _previous = _last = MeasurementMethod();
         }
     }
 }

@@ -35,7 +35,6 @@
         public Metric()
         {
             StartTime = DateTime.Now;
-            First = _previous = _last = MeasurementMethod();
         }
     }
 }
