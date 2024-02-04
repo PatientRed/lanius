@@ -18,8 +18,9 @@ As is:
 	telemetry.Measure();
 	telemetry.ForceFlush();
 
+	//or look inside test.txt
 	foreach (var metric in telemetry.Measurements)
-	Console.WriteLine($"{metric.Key}={metric.Value}");
+		Console.WriteLine($"{metric.Key}={metric.Value}");
 
 With added custom metric:
 
