@@ -46,12 +46,4 @@ namespace lanius
         //Only useful when using custom metrics adding behaviour
         public TelemetryProvider() : this(metrics: [], storageProvider: null!) { }
     }
-
-    public class DummyTelemetryProvider : TelemetryProvider
-    {
-        public DummyTelemetryProvider()
-        {
-            _metrics = [new TotalCPUTime(), new WorkingSetDelta(), new PagedMemoryDelta(), new PrivateMemoryDelta()];
-        }
-    }
 }
