@@ -1,7 +1,7 @@
 ﻿namespace lanius
 {
     //non-numeric & non-discrete metrics?
-    internal interface IMetric
+    public interface IMetric
     {
         string Name { get; }
         long Value { get; }

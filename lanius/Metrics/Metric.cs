@@ -1,6 +1,6 @@
 ﻿namespace lanius
 {
-    internal abstract class Metric<T> : IMetric
+    public abstract class Metric<T> : IMetric
     {
         public abstract string Name { get; }
 

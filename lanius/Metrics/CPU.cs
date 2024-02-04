@@ -1,6 +1,6 @@
 ﻿namespace lanius
 {
-    internal abstract class CPUTime : ProcessMetric<TimeSpan>
+    public abstract class CPUTime : ProcessMetric<TimeSpan>
     {
         protected override bool RefreshRequired => false;
         public TimeSpan RawValue => _last - _previous;
@@ -9,7 +9,7 @@
         public override long TotalValue => (long)(_last - First).TotalMilliseconds; //Raw.total to long?
     }
 
-    internal class TotalCPUTime : CPUTime
+    public class TotalCPUTime : CPUTime
     {
         public override string Name => "TotalCPUTime";
         //alternative?:
