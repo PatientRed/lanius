@@ -2,10 +2,10 @@ using lanius.Measurements;
 
 namespace lanius
 {
-    public class TelemetryProvider : ITelemetryProvider
+    public sealed class TelemetryProvider : ITelemetryProvider
     {
-        private protected IMetric[] _metrics;
-        private protected IDataStorageProvider? _storageProvider;
+        private IMetric[] _metrics;
+        private IDataStorageProvider? _storageProvider;
 
         public IEnumerable<Measurement> Measurements => _metrics.Select(metric => metric.GetData());
 
@@ -44,6 +44,6 @@ namespace lanius
         }
 
         //Only useful when using custom metrics adding behaviour
-        public TelemetryProvider() : this(metrics: [], storageProvider: null!) { }
+        internal TelemetryProvider() : this(metrics: [], storageProvider: null!) { }
     }
 }
