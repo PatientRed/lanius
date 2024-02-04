@@ -35,6 +35,8 @@ namespace lanius
             _storageProvider.Flush(Measurements);
         }
 
+        public static TelemetryProvider CreateProvider(IEnumerable<Type> metrics) => new TelemetryProvider(metrics.Where(metric => typeof(IMetric).IsAssignableFrom(metric)).Select(MetricFactory.Create).ToArray());
+
         internal TelemetryProvider(IMetric[] metrics, IDataStorageProvider? storageProvider = null)
         {
             _metrics = metrics;
