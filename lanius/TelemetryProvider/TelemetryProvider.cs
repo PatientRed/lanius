@@ -38,16 +38,11 @@ namespace lanius
         internal TelemetryProvider(IMetric[] metrics, IDataStorageProvider? storageProvider = null)
         {
             _metrics = metrics;
-            _storageProvider = storageProvider;
+            Redirect(storageProvider!);
         }
 
-        public TelemetryProvider(IDataStorageProvider storageProvider)
-        {
-            _metrics = [];
-            _storageProvider = storageProvider;
-        }
-
-        public TelemetryProvider() => _metrics = [];
+        //Only useful when using custom metrics adding behaviour
+        public TelemetryProvider() : this(metrics: [], storageProvider: null!) { }
     }
 
     public class DummyTelemetryProvider : TelemetryProvider
