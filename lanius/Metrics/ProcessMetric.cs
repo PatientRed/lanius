@@ -9,23 +9,17 @@ namespace lanius
 
         public override void Measure()
         {
-            _previous = _last;
-
             if (RefreshRequired)
                 CurrentProcess.Refresh();
 
-            _last = MeasurementMethod();
-
-            EndTime = DateTime.Now;
+            base.Measure();
         }
         public override void ContinuosMeasure()
         {
             if (RefreshRequired)
                 CurrentProcess.Refresh();
 
-            _last = MeasurementMethod();
-
-            EndTime = DateTime.Now;
+            base.ContinuosMeasure();
         }
 
         public ProcessMetric()
