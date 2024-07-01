@@ -11,6 +11,6 @@
         DateTime EndTime { get; }
 
         void Measure();
-        void ContinuosMeasure();
+        void ContinuousMeasure();
     }
 }

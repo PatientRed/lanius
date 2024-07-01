@@ -14,12 +14,12 @@ namespace lanius
 
             base.Measure();
         }
-        public override void ContinuosMeasure()
+        public override void ContinuousMeasure()
         {
             if (RefreshRequired)
                 CurrentProcess.Refresh();
 
-            base.ContinuosMeasure();
+            base.ContinuousMeasure();
         }
 
         public ProcessMetric()

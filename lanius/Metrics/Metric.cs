@@ -25,7 +25,7 @@
             EndTime = DateTime.Now;
         }
 
-        public virtual void ContinuosMeasure()
+        public virtual void ContinuousMeasure()
         {
             _last = MeasurementMethod();
 

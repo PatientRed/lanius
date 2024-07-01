@@ -21,7 +21,7 @@ namespace lanius
         {
             foreach (var metric in _metrics)
             {
-                metric.ContinuosMeasure();
+                metric.ContinuousMeasure();
             }
         }
 
