@@ -1,6 +1,6 @@
 ﻿namespace lanius
 {
-    internal class MetricFactory : IMetricFactory<IMetric>
+    public class SimpleMetricFactory : IMetricFactory<IMetric>
     {
         private static Dictionary<Type, Func<IMetric>> _constructors =
             AppDomain.CurrentDomain.GetAssemblies().SelectMany(assembly => assembly.GetTypes())
@@ -8,9 +8,9 @@
                                                    .Select(type => new KeyValuePair<Type, Func<IMetric>>(type, () => (IMetric)type.GetConstructors().First(constructor => constructor.GetParameters().Length == 0).Invoke(null)))
                                                    .ToDictionary();
 
-        private static MetricFactory? _this = null;
+        private static SimpleMetricFactory? _this = null;
 
-        public static MetricFactory GetFactory() => _this ??= new MetricFactory();
+        public static SimpleMetricFactory GetFactory() => _this ??= new SimpleMetricFactory();
 
         public IMetric Create(Type type) => _constructors[type].Invoke();
     }
