@@ -2,9 +2,9 @@ using lanius.Measurements;
 
 namespace lanius
 {
-    public sealed class TelemetryProvider : ITelemetryProvider
+    public sealed class TelemetryProvider<U> : ITelemetryProvider<TelemetryProvider<U>, U> where U : IMetric
     {
-        private IMetric[] _metrics;
+        private U[] _metrics;
         private IDataStorageProvider? _storageProvider;
 
         public IEnumerable<Measurement> Measurements => _metrics.Select(metric => metric.GetData());
@@ -35,9 +35,10 @@ namespace lanius
             _storageProvider.Flush(Measurements);
         }
 
-        public static TelemetryProvider CreateProvider(IEnumerable<Type> metrics, IDataStorageProvider? storageProvider = null) => new TelemetryProvider(metrics.Where(metric => typeof(IMetric).IsAssignableFrom(metric)).Select(MetricFactory.GetFactory().Create).ToArray(), storageProvider);
+        public static TelemetryProvider<U> CreateProvider(IEnumerable<Type> metrics, IMetricFactory<U> factory, IDataStorageProvider? storageProvider = null) 
+                                            => new TelemetryProvider<U>(metrics.Where(metric => typeof(U).IsAssignableFrom(metric)).Select(factory.Create).ToArray(), storageProvider);
 
-        internal TelemetryProvider(IMetric[] metrics, IDataStorageProvider? storageProvider = null)
+        internal TelemetryProvider(U[] metrics, IDataStorageProvider? storageProvider = null)
         {
             _metrics = metrics;
             Redirect(storageProvider!);
