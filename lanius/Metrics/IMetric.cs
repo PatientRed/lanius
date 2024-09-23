@@ -15,4 +15,5 @@
     }
 
     public interface ICurrentProcessMetric : IMetric { }
+    public interface IProcessMetric : IMetric { }
 }
