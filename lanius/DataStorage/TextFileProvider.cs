@@ -7,7 +7,7 @@ namespace lanius
     {
         protected readonly string _file = path;
 
-        public void Flush(in IEnumerable<Measurement> measurements)
+        public void Flush(IEnumerable<Measurement> measurements)
         {
             StringBuilder result = new();
 

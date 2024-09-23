@@ -4,6 +4,6 @@ namespace lanius
 {
     public interface IDataStorageProvider
     {
-        public void Flush(in IEnumerable<Measurement> measurements);
+        public void Flush(IEnumerable<Measurement> measurements);
     }
 }
