@@ -1,6 +1,8 @@
 using lanius.Measurements;
+using lanius.MetricFactories;
+using lanius.Metrics;
 
-namespace lanius
+namespace lanius.TelemetryProviders
 {
     public sealed class TelemetryProvider<U> : ITelemetryProvider<TelemetryProvider<U>, U> where U : IMetric
     {
@@ -36,7 +38,7 @@ namespace lanius
         }
 
         //TODO: now highly-coupled with factory? cannot support metrics from different subclasses
-        public static TelemetryProvider<U> CreateProvider(IEnumerable<Type> metrics, IMetricFactory<U> factory, IDataStorageProvider? storageProvider = null) 
+        public static TelemetryProvider<U> CreateProvider(IEnumerable<Type> metrics, IMetricFactory<U> factory, IDataStorageProvider? storageProvider = null)
                                             => new TelemetryProvider<U>(metrics.Where(metric => typeof(U).IsAssignableFrom(metric)).Select(factory.Create).ToArray(), storageProvider);
 
         internal TelemetryProvider(U[] metrics, IDataStorageProvider? storageProvider = null)

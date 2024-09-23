@@ -1,4 +1,4 @@
-﻿namespace lanius
+﻿namespace lanius.Metrics
 {
     //non-numeric & non-discrete metrics?
     public interface IMetric

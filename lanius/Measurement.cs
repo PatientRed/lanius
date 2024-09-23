@@ -1,4 +1,6 @@
-﻿namespace lanius.Measurements
+﻿using lanius.Metrics;
+
+namespace lanius.Measurements
 {
     public readonly record struct Measurement(string Name, long Value, DateTime StartTime, DateTime EndTime);
 

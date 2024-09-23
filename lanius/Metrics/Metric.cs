@@ -1,4 +1,4 @@
-﻿namespace lanius
+﻿namespace lanius.Metrics
 {
     public abstract class Metric<T> : IMetric
     {

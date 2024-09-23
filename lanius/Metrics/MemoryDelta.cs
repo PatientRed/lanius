@@ -1,4 +1,4 @@
-﻿namespace lanius
+﻿namespace lanius.Metrics.CurrentProcess
 {
     public abstract class MemoryDelta : ProcessMetric<long>
     {

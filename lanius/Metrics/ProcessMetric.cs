@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace lanius
+namespace lanius.Metrics.CurrentProcess
 {
     public abstract class ProcessMetric<T> : Metric<T>, ICurrentProcessMetric
     {

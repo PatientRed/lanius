@@ -1,6 +1,8 @@
 ﻿using lanius.Measurements;
+using lanius.MetricFactories;
+using lanius.Metrics;
 
-namespace lanius
+namespace lanius.TelemetryProviders
 {
     public interface ITelemetryProvider<T, U> where T : ITelemetryProvider<T, U>
                                               where U : IMetric

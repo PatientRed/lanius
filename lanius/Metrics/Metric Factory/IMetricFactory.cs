@@ -1,4 +1,6 @@
-﻿namespace lanius
+﻿using lanius.Metrics;
+
+namespace lanius.MetricFactories
 {
     public interface IMetricFactory<T> where T : IMetric
     {
