@@ -13,4 +13,6 @@
         void Measure();
         void ContinuousMeasure();
     }
+
+    public interface ICurrentProcessMetric : IMetric { }
 }
