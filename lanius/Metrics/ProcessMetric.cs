@@ -2,7 +2,7 @@
 
 namespace lanius
 {
-    public abstract class ProcessMetric<T> : Metric<T>
+    public abstract class ProcessMetric<T> : Metric<T>, ICurrentProcessMetric
     {
         protected Process CurrentProcess { get; init; }
         protected virtual bool RefreshRequired => true;
