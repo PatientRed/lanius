@@ -14,9 +14,7 @@ namespace lanius
             foreach (Measurement measurement in measurements)
                 result.AppendLine(measurement.ToString());
 
-            var file = new StreamWriter(new FileStream(_file, FileMode.Append, access: FileAccess.Write, share: FileShare.None));
-
-            using (file)
+            using (var file = new StreamWriter(new FileStream(_file, FileMode.Append, access: FileAccess.Write, share: FileShare.None)))
             {
                 file.Write(result);
                 file.WriteLine();
