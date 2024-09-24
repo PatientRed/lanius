@@ -1,7 +1,7 @@
 ﻿using lanius.Measurements;
 using System.Text;
 
-namespace lanius
+namespace lanius.DataStorage.TextFile
 {
     public class TextFileProvider(string path) : IDataStorageProvider
     {
@@ -19,6 +19,9 @@ namespace lanius
             {
                 file.Write(result);
                 file.WriteLine();
+
+                //await file.WriteAsync(result);
+                //await file.WriteLineAsync();
             }
         }
     }

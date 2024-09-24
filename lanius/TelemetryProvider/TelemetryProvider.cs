@@ -1,7 +1,9 @@
+using lanius.DataStorage;
 using lanius.Measurements;
 using lanius.MetricFactories;
 using lanius.Metrics;
 
+//since this is suggested as entry-point, should be the pure namespace? (same logic applied to base interface)
 namespace lanius.TelemetryProviders
 {
     public sealed class TelemetryProvider<U> : ITelemetryProvider<TelemetryProvider<U>, U> where U : IMetric

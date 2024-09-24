@@ -1,6 +1,6 @@
 ﻿using lanius.Measurements;
 
-namespace lanius
+namespace lanius.DataStorage
 {
     public interface IDataStorageProvider
     {
