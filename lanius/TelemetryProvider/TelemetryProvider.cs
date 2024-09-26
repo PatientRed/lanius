@@ -6,9 +6,9 @@ using lanius.Metrics;
 //since this is suggested as entry-point, should be the pure namespace? (same logic applied to base interface)
 namespace lanius.TelemetryProviders
 {
-    public sealed class TelemetryProvider<U> : ITelemetryProvider<TelemetryProvider<U>, U> where U : IMetric
+    public sealed class TelemetryProvider<T> : ITelemetryProvider<TelemetryProvider<T>, T> where T : IMetric
     {
-        private U[] _metrics;
+        private T[] _metrics;
         private IDataStorageProvider? _storageProvider;
 
         public IEnumerable<Measurement> Measurements => _metrics.Select(metric => metric.GetData());
@@ -39,11 +39,11 @@ namespace lanius.TelemetryProviders
             _storageProvider.Flush(Measurements);
         }
 
-        //TODO: now highly-coupled with factory? cannot support metrics from different subclasses
-        public static TelemetryProvider<U> CreateProvider(IEnumerable<Type> metrics, IMetricFactory<U> factory, IDataStorageProvider? storageProvider = null)
-                                            => new TelemetryProvider<U>(metrics.Where(metric => typeof(U).IsAssignableFrom(metric)).Select(factory.Create).ToArray(), storageProvider);
+        //TODO: now highly-coupled with factory? cannot support metrics from different subclasses (without common ancestor)
+        public static TelemetryProvider<T> CreateProvider(IEnumerable<Type> metrics, IMetricFactory<T> factory, IDataStorageProvider? storageProvider = null)
+                                            => new TelemetryProvider<T>(metrics.Where(metric => typeof(T).IsAssignableFrom(metric)).Select(factory.Create).ToArray(), storageProvider);
 
-        internal TelemetryProvider(U[] metrics, IDataStorageProvider? storageProvider = null)
+        internal TelemetryProvider(T[] metrics, IDataStorageProvider? storageProvider = null)
         {
             _metrics = metrics;
             Redirect(storageProvider!);
