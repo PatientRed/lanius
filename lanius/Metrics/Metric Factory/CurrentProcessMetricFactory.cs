@@ -15,5 +15,7 @@ namespace lanius.MetricFactories
         public static CurrentProcessMetricFactory GetFactory() => _this ??= new CurrentProcessMetricFactory();
 
         public ICurrentProcessMetric Create(Type type) => _constructors[type].Invoke();
+
+        private CurrentProcessMetricFactory() { }
     }
 }

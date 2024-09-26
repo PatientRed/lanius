@@ -15,5 +15,7 @@ namespace lanius.MetricFactories
         public static SimpleMetricFactory GetFactory() => _this ??= new SimpleMetricFactory();
 
         public IMetric Create(Type type) => _constructors[type].Invoke();
+
+        private SimpleMetricFactory() { }
     }
 }
