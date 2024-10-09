@@ -1,4 +1,5 @@
-﻿using lanius.Metrics;
+﻿using lanius.MetricFactories.ConstructionParameters;
+using lanius.Metrics;
 using System.Reflection;
 
 namespace lanius.MetricFactories
@@ -9,5 +10,9 @@ namespace lanius.MetricFactories
             AppDomain.CurrentDomain.GetAssemblies().SelectMany(assembly => assembly.GetTypes())
                                                    .Where(type => typeof(T).IsAssignableFrom(type))
                                                    .SelectMany(type => type.GetConstructors().Where(ci => ci.DeclaringType is not null && !ci.DeclaringType.IsAbstract && !ci.IsStatic && ci.IsPublic));
+
+        public static IEnumerable<ConstructorInfo> GetConstructors<T, U>() where T : IMetric
+                                                                           where U : IMetricConstructionParams =>
+            GetConstructors<T>().Where(ci => ci.GetParameters().IsCompatible<U>());
     }
 }
