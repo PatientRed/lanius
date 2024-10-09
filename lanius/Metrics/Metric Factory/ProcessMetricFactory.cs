@@ -1,7 +1,18 @@
-﻿using lanius.Metrics;
+﻿using lanius.MetricFactories.ConstructionParameters;
+using lanius.Metrics;
 
 namespace lanius.MetricFactories
 {
+    public class ProcessMetricParams : IMetricConstructionParams
+    {
+        private static Type[] _params = [typeof(int)];
+        private static ProcessMetricParams? _this;
+
+        public static Type[] Params => _params;
+
+        private ProcessMetricParams() { }
+    }
+
     public class ProcessMetricFactory : IMetricFactory<IProcessMetric>
     {
         private static readonly Dictionary<Type, Func<int, IProcessMetric>> _constructors = MetricFactoryHelper.GetConstructors<IProcessMetric>()
