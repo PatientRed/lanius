@@ -29,4 +29,21 @@ namespace lanius.MetricFactories
 
         internal ProcessMetricFactoryOriginal(int id) => _processId = id;
     }
+
+    public class ProcessMetricFactoryAlt : IMetricFactory<IProcessMetric>
+    {
+        private static readonly Dictionary<Type, Func<int, IProcessMetric>> _constructors =
+            MetricFactoryHelper.GetConstructors<IProcessMetric, ProcessMetricParams>()
+            //.DeclaringType is nullchecked inside MetricFactoryHelper.GetConstructors
+            .Select(ci => new KeyValuePair<Type, Func<int, IProcessMetric>>(ci.DeclaringType!, (input) => (IProcessMetric)ci.Invoke([input])))
+            .ToDictionary();
+
+        public static ProcessMetricFactoryAlt GetFactory(int processID) => new ProcessMetricFactoryAlt(processID);
+
+        public IProcessMetric Create(Type type) => _constructors[type].Invoke(_processId);
+
+        private readonly int _processId;
+
+        internal ProcessMetricFactoryAlt(int id) => _processId = id;
+    }
 }
