@@ -1,4 +1,4 @@
-﻿using lanius.MetricFactories.ConstructionParameters;
+﻿using lanius.MetricFactories.Parametrized;
 using lanius.Metrics;
 
 namespace lanius.MetricFactories

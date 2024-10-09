@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace lanius.MetricFactories.ConstructionParameters
+namespace lanius.MetricFactories.Parametrized
 {
     public interface IMetricConstructionParams
     {
