@@ -4,11 +4,11 @@ namespace lanius.MetricFactories
 {
     public class ProcessMetricFactory : IMetricFactory<IProcessMetric>
     {
-        private static Dictionary<Type, Func<int, IProcessMetric>> _constructors =
-            AppDomain.CurrentDomain.GetAssemblies().SelectMany(assembly => assembly.GetTypes())
-                                                   .Where(type => typeof(IProcessMetric).IsAssignableFrom(type) && type.GetConstructors().Where(constructor => constructor.GetParameters().Length == 1).Any())
-                                                   .Select(type => new KeyValuePair<Type, Func<int, IProcessMetric>>(type, (input) => (IProcessMetric)type.GetConstructors().First(constructor => constructor.GetParameters().Length == 1).Invoke([input])))
-                                                   .ToDictionary();
+        private static readonly Dictionary<Type, Func<int, IProcessMetric>> _constructors = MetricFactoryHelper.GetConstructors<IProcessMetric>()
+                                                                                .Where(ci => ci.GetParameters().Length == 1 && ci.GetParameters()[0].ParameterType == typeof(int))
+                                                                                //.DeclaringType is nullchecked inside MetricFactoryHelper.GetConstructors
+                                                                                .Select(ci => new KeyValuePair<Type, Func<int, IProcessMetric>>(ci.DeclaringType!, (input) => (IProcessMetric)ci.Invoke([input])))
+                                                                                .ToDictionary();
 
         public static ProcessMetricFactory GetFactory(int processID) => new ProcessMetricFactory(processID);
 
