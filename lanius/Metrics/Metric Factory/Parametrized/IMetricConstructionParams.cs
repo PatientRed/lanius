@@ -16,7 +16,7 @@ namespace lanius.MetricFactories.Parametrized
 
             for (int i = 0; i < T.Params.Length; i++)
                 //TODO: equality comparison instead?
-                if (actual[i].ParameterType.IsAssignableFrom(T.Params[i]))
+                if (!actual[i].ParameterType.IsAssignableFrom(T.Params[i]))
                     return false;
 
             return true;
