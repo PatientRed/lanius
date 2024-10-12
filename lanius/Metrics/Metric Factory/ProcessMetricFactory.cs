@@ -13,8 +13,7 @@ namespace lanius.MetricFactories
         private ProcessMetricParams() { }
     }
 
-    public class ProcessMetricFactoryAlt2 : BaseMetricFactoryParametrized<IProcessMetric, ProcessMetricParams>,
-                                            IMetricFactory<IProcessMetric>
+    public class ProcessMetricFactoryAlt2 : BaseMetricFactoryParametrized<IProcessMetric, ProcessMetricParams>
     {
         private static readonly Dictionary<Type, Func<int, IProcessMetric>> _constructors =
             GetConstructors()
@@ -24,7 +23,7 @@ namespace lanius.MetricFactories
 
         public static ProcessMetricFactoryAlt2 GetFactory(int processID) => new ProcessMetricFactoryAlt2(processID);
 
-        public IProcessMetric Create(Type type) => _constructors[type].Invoke(_processId);
+        public override IProcessMetric Create(Type type) => _constructors[type].Invoke(_processId);
 
         private readonly int _processId;
 
