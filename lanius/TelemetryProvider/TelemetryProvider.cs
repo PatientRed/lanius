@@ -8,7 +8,7 @@ namespace lanius.TelemetryProviders
 {
     public sealed class TelemetryProvider<T> : ITelemetryProvider<TelemetryProvider<T>, T> where T : IMetric
     {
-        private T[] _metrics;
+        private readonly IEnumerable<T> _metrics;
         private IDataStorageProvider? _storageProvider;
 
         public IEnumerable<Measurement> Measurements => _metrics.Select(metric => metric.GetData());
@@ -45,11 +45,11 @@ namespace lanius.TelemetryProviders
 
         internal TelemetryProvider(IEnumerable<T> metrics, IDataStorageProvider? storageProvider = null)
         {
-            _metrics = metrics.ToArray();
+            _metrics = metrics;
             Redirect(storageProvider!);
         }
 
-        //Only useful when using custom metrics adding behaviour
+        //Only useful when using custom metrics adding behaviour. And since the field is now readonly it is not possible.
         internal TelemetryProvider() : this(metrics: [], storageProvider: null!) { }
     }
 }
