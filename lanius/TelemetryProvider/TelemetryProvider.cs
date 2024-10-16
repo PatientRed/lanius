@@ -12,7 +12,7 @@ namespace lanius.TelemetryProviders
         private IDataStorageProvider? _storageProvider;
 
         bool _cached = false;
-        IEnumerable<Measurement> _cachedMeasurements;
+        IEnumerable<Measurement>? _cachedMeasurements;
         public IEnumerable<Measurement> Measurements
         {
             get
@@ -23,7 +23,9 @@ namespace lanius.TelemetryProviders
                     _cached = true;
                 }
 
-                return _cachedMeasurements;
+                return _cachedMeasurements ?? throw new InvalidOperationException("Caching mechanism is broken");
+                //I can only imagine programming issue in future lead to this behaviour or reflection-based intrusion. Safe workaround seems to be:
+                //return _cachedMeasurements ??= _metrics.Select(metric => metric.GetData());
             }
         }
 
