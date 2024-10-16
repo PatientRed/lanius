@@ -11,7 +11,21 @@ namespace lanius.TelemetryProviders
         private readonly IEnumerable<T> _metrics;
         private IDataStorageProvider? _storageProvider;
 
-        public IEnumerable<Measurement> Measurements => _metrics.Select(metric => metric.GetData());
+        bool _cached = false;
+        IEnumerable<Measurement> _cachedMeasurements;
+        public IEnumerable<Measurement> Measurements
+        {
+            get
+            {
+                if (!_cached)
+                {
+                    _cachedMeasurements = _metrics.Select(metric => metric.GetData());
+                    _cached = true;
+                }
+
+                return _cachedMeasurements;
+            }
+        }
 
         public void Measure()
         {
@@ -19,6 +33,8 @@ namespace lanius.TelemetryProviders
             {
                 metric.Measure();
             }
+
+            _cached = false;
         }
 
         public void ContinuousMeasure()
@@ -27,6 +43,8 @@ namespace lanius.TelemetryProviders
             {
                 metric.ContinuousMeasure();
             }
+
+            _cached = false;
         }
 
         public void Redirect(IDataStorageProvider storageProvider) => _storageProvider = storageProvider;
