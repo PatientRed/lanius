@@ -11,8 +11,8 @@ namespace lanius.TelemetryProviders
         private readonly IEnumerable<T> _metrics;
         private IDataStorageProvider? _storageProvider;
 
-        bool _cached = false;
-        IEnumerable<Measurement>? _cachedMeasurements;
+        private bool _cached = false;
+        private IEnumerable<Measurement>? _cachedMeasurements;
         public IEnumerable<Measurement> Measurements
         {
             get
