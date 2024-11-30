@@ -1,12 +1,14 @@
 ﻿namespace lanius.Metrics
 {
-    public abstract class Metric<T> : IMetric
+    //TODO: Regarding struct constraint: I dont wanna convert fields into nullables due to boxing (or either suppress the nullable compiler warning),
+    //T value types expected in most usecases, but I could imagine where T is a ref type with 0 boxing overhead, so...
+    public abstract class Metric<T> : IMetric where T : struct
     {
         public abstract string Name { get; }
 
         public abstract long Value { get; }
         public abstract long TotalValue { get; }
-        
+
         /// <remarks>default(DateTime) here means you forget to call <see cref="Start"/>.</remarks>
         public DateTime StartTime { get; protected set; }
         public DateTime EndTime { get; protected set; }

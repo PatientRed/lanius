@@ -2,7 +2,7 @@
 
 namespace lanius.Metrics.CurrentProcess
 {
-    public abstract class ProcessMetric<T> : Metric<T>, ICurrentProcessMetric
+    public abstract class ProcessMetric<T> : Metric<T>, ICurrentProcessMetric where T : struct
     {
         protected Process CurrentProcess { get; init; }
         protected virtual bool RefreshRequired => true;
