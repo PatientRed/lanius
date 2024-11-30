@@ -6,7 +6,7 @@ using lanius.Metrics;
 //since this is suggested as entry-point, should be the pure namespace? (same logic applied to base interface)
 namespace lanius.TelemetryProviders
 {
-    public sealed class TelemetryProvider<T> : ITelemetryProvider<TelemetryProvider<T>, T> where T : IMetric
+    public sealed class TelemetryProvider<T> : IMeasurable, ITelemetryProvider<TelemetryProvider<T>, T> where T : IMetric
     {
         private readonly IEnumerable<T> _metrics;
         private IDataStorageProvider? _storageProvider;

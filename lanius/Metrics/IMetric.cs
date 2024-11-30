@@ -1,7 +1,7 @@
 ﻿namespace lanius.Metrics
 {
     //non-numeric & non-discrete metrics?
-    public interface IMetric
+    public interface IMetric : IMeasurable
     {
         string Name { get; }
         long Value { get; }
@@ -9,10 +9,6 @@
 
         DateTime StartTime { get; }
         DateTime EndTime { get; }
-
-        void Start();
-        void Measure();
-        void ContinuousMeasure();
     }
 
     public interface ICurrentProcessMetric : IMetric { }
