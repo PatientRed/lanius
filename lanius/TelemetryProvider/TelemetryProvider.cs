@@ -65,7 +65,7 @@ namespace lanius.TelemetryProviders
 
         internal TelemetryProvider(IEnumerable<T> metrics, IDataStorageProvider? storageProvider = null)
         {
-            _metrics = metrics;
+            _metrics = metrics.ToArray();
             Redirect(storageProvider!);
         }
 
