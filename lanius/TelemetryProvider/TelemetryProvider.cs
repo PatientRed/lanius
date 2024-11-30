@@ -29,6 +29,14 @@ namespace lanius.TelemetryProviders
             }
         }
 
+        public void Start()
+        {
+            foreach (var metric in _metrics)
+            {
+                metric.Start();
+            }
+        }
+
         public void Measure()
         {
             foreach (var metric in _metrics)
