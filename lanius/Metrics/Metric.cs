@@ -6,7 +6,8 @@
 
         public abstract long Value { get; }
         public abstract long TotalValue { get; }
-
+        
+        /// <remarks>default(DateTime) here means you forget to call <see cref="Start"/>.</remarks>
         public DateTime StartTime { get; protected set; }
         public DateTime EndTime { get; protected set; }
 
