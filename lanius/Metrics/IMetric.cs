@@ -10,6 +10,7 @@
         DateTime StartTime { get; }
         DateTime EndTime { get; }
 
+        void Start();
         void Measure();
         void ContinuousMeasure();
     }

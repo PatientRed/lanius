@@ -4,9 +4,9 @@
     {
         protected override bool RefreshRequired => false;
         public TimeSpan RawValue => _last - _previous;
-        public TimeSpan RawTotalValue => _last - First;
+        public TimeSpan RawTotalValue => _last - _first;
         public override long Value => (long)(_last - _previous).TotalMilliseconds; //Raw.total to long?
-        public override long TotalValue => (long)(_last - First).TotalMilliseconds; //Raw.total to long?
+        public override long TotalValue => (long)(_last - _first).TotalMilliseconds; //Raw.total to long?
     }
 
     public class TotalCPUTime : CPUTime

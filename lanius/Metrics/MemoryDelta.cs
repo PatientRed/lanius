@@ -3,7 +3,7 @@
     public abstract class MemoryDelta : ProcessMetric<long>
     {
         public override long Value => _last - _previous;
-        public override long TotalValue => _last - First;
+        public override long TotalValue => _last - _first;
     }
 
     public class WorkingSetDelta : MemoryDelta
