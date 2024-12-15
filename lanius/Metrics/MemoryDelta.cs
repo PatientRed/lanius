@@ -1,6 +1,6 @@
 ﻿namespace lanius.Metrics.CurrentProcess
 {
-    public abstract class MemoryDelta : ProcessMetric<long>
+    public abstract class MemoryDelta : CurrentProcessMetric<long>
     {
         public override long Value => _last - _previous;
         public override long TotalValue => _last - _first;

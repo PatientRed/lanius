@@ -1,6 +1,6 @@
 ﻿namespace lanius.Metrics.CurrentProcess
 {
-    public abstract class CPUTime : ProcessMetric<TimeSpan>
+    public abstract class CPUTime : CurrentProcessMetric<TimeSpan>
     {
         protected override bool RefreshRequired => false;
         public TimeSpan RawValue => _last - _previous;
