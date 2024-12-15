@@ -1,7 +1,6 @@
 ﻿using lanius.MetricFactories.Parametrized;
-using lanius.Metrics;
 
-namespace lanius.MetricFactories
+namespace lanius.Metrics.CurrentProcess
 {
     public class CurrentProcessMetricFactory : BaseMetricFactoryParametrized<ICurrentProcessMetric, EmptyMetricConstructionParams>
     {
