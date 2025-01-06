@@ -19,7 +19,7 @@ namespace lanius.TelemetryProviders
             {
                 if (!_cached)
                 {
-                    _cachedMeasurements = _metrics.Select(metric => metric.GetData());
+                    _cachedMeasurements = _metrics.Select(metric => metric.GetData()).ToArray();
                     _cached = true;
                 }
 
