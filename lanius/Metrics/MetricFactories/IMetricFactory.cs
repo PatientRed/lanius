@@ -5,5 +5,7 @@ namespace lanius.MetricFactories
     public interface IMetricFactory<out T> where T : IMetric
     {
         T Create(Type type);
+
+        bool CanCreate(Type type) => typeof(T).IsAssignableFrom(type);
     }
 }
