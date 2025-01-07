@@ -69,7 +69,7 @@ namespace lanius.TelemetryProviders
 
         //TODO: now highly-coupled with factory? cannot support metrics from different subclasses (without common ancestor)
         public static TelemetryProvider<T> CreateProvider(IEnumerable<Type> metrics, IMetricFactory<T> factory, IDataStorageProvider? storageProvider = null)
-                                            => new TelemetryProvider<T>(metrics.Where(metric => typeof(T).IsAssignableFrom(metric)).Select(factory.Create), storageProvider);
+                                           => new TelemetryProvider<T>(metrics.Where(factory.CanCreate).Select(factory.Create), storageProvider);
 
         protected TelemetryProvider(IEnumerable<T> metrics, IDataStorageProvider? storageProvider = null)
         {
