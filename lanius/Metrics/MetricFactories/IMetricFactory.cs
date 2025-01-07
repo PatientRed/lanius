@@ -6,6 +6,7 @@ namespace lanius.MetricFactories
     {
         T Create(Type type);
 
+        //TODO: seems not good. Think more.
         bool CanCreate(Type type) => typeof(T).IsAssignableFrom(type);
     }
 }
