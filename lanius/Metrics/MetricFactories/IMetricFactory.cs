@@ -2,7 +2,7 @@
 
 namespace lanius.MetricFactories
 {
-    public interface IMetricFactory<T> where T : IMetric
+    public interface IMetricFactory<out T> where T : IMetric
     {
         T Create(Type type);
     }
