@@ -6,7 +6,7 @@ using lanius.Metrics;
 //since this is suggested as entry-point, should be the pure namespace? (same logic applied to base interface)
 namespace lanius.TelemetryProviders
 {
-    public sealed class TelemetryProvider<T> : IMeasurable, ITelemetryProvider<TelemetryProvider<T>, T> where T : IMetric
+    public class TelemetryProvider<T> : IMeasurable, ITelemetryProvider<TelemetryProvider<T>, T> where T : IMetric
     {
         private readonly IEnumerable<T> _metrics;
         private IDataStorageProvider? _storageProvider;
@@ -71,7 +71,7 @@ namespace lanius.TelemetryProviders
         public static TelemetryProvider<T> CreateProvider(IEnumerable<Type> metrics, IMetricFactory<T> factory, IDataStorageProvider? storageProvider = null)
                                             => new TelemetryProvider<T>(metrics.Where(metric => typeof(T).IsAssignableFrom(metric)).Select(factory.Create), storageProvider);
 
-        internal TelemetryProvider(IEnumerable<T> metrics, IDataStorageProvider? storageProvider = null)
+        protected TelemetryProvider(IEnumerable<T> metrics, IDataStorageProvider? storageProvider = null)
         {
             _metrics = metrics.ToArray();
             Redirect(storageProvider!);
